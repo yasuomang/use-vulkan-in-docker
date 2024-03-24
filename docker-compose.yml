@@ -1,0 +1,10 @@
+services:
+  vulkan_in_docker:
+    build: .
+    runtime: nvidia
+    command: sh -c "nvidia-smi && vulkaninfo && vkcube"
+    # 一下是windows下的配置，会显示一个3d窗口，linux可以不加
+    environment:
+      - DISPLAY
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix # Needed to share GPU
